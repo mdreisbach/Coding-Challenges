@@ -1,0 +1,36 @@
+//The problem I'll be having a jab at today is creating a function to return any saddle points(if any) of a matrix
+//Side note, the saddle point of a matrix is an element in a matrix which is the smallest of its row and largest in its column
+//Source: http://javaconceptoftheday.com/find-saddle-point-of-a-matrix-in-java/
+
+static String SaddlePoint(int[][] matrix)
+	    {
+		int colIndex = 0;
+     	int min = matrix[0][0];
+          
+         ArrayList<String> saddlePoint = new ArrayList<String>();
+         String printSaddlePoints = "";
+	        for (int i = 0; i < matrix.length; i++) 
+	        {
+	            for (int j = 1; j < matrix[i].length; j++)
+	            {
+	                if(matrix[i][j] < min)
+	                {
+	                    min = matrix[i][j]; // smallest row number
+	                    colIndex = j;
+	                }
+	            }
+	 //check if the smallest row number is also the largest element in its column
+	            for (int j = 0; j < matrix.length; j++)
+	            {
+	                if(min < matrix[j][colIndex])
+	                {
+	                    saddlePoint.add(""+min);
+	                }
+	            }
+	        }
+	        for(String temp : saddlePoint)
+	        {
+	        	printSaddlePoints += temp + ", ";
+	        }
+	        return printSaddlePoints;
+	    }
